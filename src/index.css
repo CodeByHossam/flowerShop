@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --app-max-width: 1180px;
+}
+
+@layer base {
+  body {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #333;
+  }
+}
+
+@layer components {
+  #root {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+}
+
+@layer utilities {
+  @keyframes slideDown {
+    0% {
+      transform: scaleY(0);
+    }
+
+    80% {
+      transform: scaleY(1.2);
+    }
+
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.5s ease-in-out forwards;
+  }
+}
