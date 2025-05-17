@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Menu,
   X,
@@ -11,6 +11,7 @@ import {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuClass, setMobileMenuClass] = useState("hidden");
 
   const navItems = [
     { id: "home", label: "Home", icon: <Home size={18} /> },
@@ -24,19 +25,25 @@ const Header = () => {
     { id: "contact", label: "Contact", icon: <Phone size={18} /> },
   ];
 
+  // Update mobile menu class when isOpen changes
+  useEffect(() => {
+    setMobileMenuClass(isOpen ? "mobile-menu-open " : "mobile-menu-closed ");
+  }, [isOpen]);
+
   return (
-    <header className="sticky top-0 bg-red-300 shadow z-50 w-screen">
-      {/* header bar section will contains logo and (desktop menu OR mobile menu button based on screen size) */}
+    <header className="bg-main-color h-headerBarSmall sm:h-headerBarBig sticky top-0 z-50 w-screen px-2 py-3">
+      {/* header bar section contains logo and Desktop menu OR mobile menu button based on screen size*/}
       <section
         id="header-bar"
-        className="max-w-[app-max-width] mx-auto flex justify-between items-center px-4 py-3"
+        className="md:max-w-maxAppWidth mx-auto flex items-center justify-between text-sm md:px-10"
       >
+        {/* Logo section */}
         <section id="logo" className="text-xl font-bold">
           🌸 Flower Shop
         </section>
 
-        {/* Desktop Menu */}
-        <nav className="hidden md:flex gap-6 items-center">
+        {/* Desktop Menu hidden on mobile */}
+        <nav className="hidden items-center gap-6 md:flex">
           {navItems.map(({ id, label, icon }) => (
             <a
               key={id}
@@ -49,32 +56,30 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button appears on mobile */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-xl"
+          className="text-xl md:hidden"
           aria-label="Toggle menu"
         >
           {isOpen ? <X /> : <Menu />}
         </button>
       </section>
 
-      {/* Mobile Menu will appear below the header bar section if button is open */}
-      {isOpen && (
-        <nav className="md:hidden absolute  w-full origin-top bg-red-200 px-4 py-3 space-y-3 animate-slideDown ">
-          {navItems.map(({ id, label, icon }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="flex items-center gap-2 hover:underline"
-              onClick={() => setIsOpen(false)}
-            >
-              {icon}
-              <span>{label}</span>
-            </a>
-          ))}
-        </nav>
-      )}
+      {/* Mobile Menu appears when click the button */}
+      <nav className={mobileMenuClass}>
+        {navItems.map(({ id, label, icon }) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            className="flex items-center gap-2 hover:underline"
+            onClick={() => setIsOpen(false)}
+          >
+            {icon}
+            <span>{label}</span>
+          </a>
+        ))}
+      </nav>
     </header>
   );
 };

@@ -1,14 +1,28 @@
+/* ✅ Import both fonts at the top */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
 @import "tailwindcss";
 
 @theme {
-  --app-max-width: 1180px;
+  --color-main-color: rgb(255, 255, 255, 1);
+  --color-subColor: rgb(166, 0, 55);
+  --color-accentColor: rgb(15, 163, 52);
+  --font-roboto: "Roboto", sans-serif;
+  --font-parisienne: "Parisienne", cursive;
+  --font-inter: "Inter", sans-serif;
+  --spacing-maxAppWidth: 1180px;
+  --spacing-headerBarBig: 80px;
+  --spacing-headerBarSmall: 60px;
 }
 
 @layer base {
   body {
+    font-family: var(--font-roboto);
     min-height: 100vh;
     min-width: 100vw;
-    background-color: #333;
+    color: black;
   }
 }
 
@@ -16,10 +30,9 @@
   #root {
     min-height: 100vh;
     min-width: 100vw;
+    overflow: hidden;
   }
-}
 
-@layer utilities {
   @keyframes slideDown {
     0% {
       transform: scaleY(0);
@@ -36,5 +49,17 @@
 
   .animate-slideDown {
     animation: slideDown 0.5s ease-in-out forwards;
+  }
+
+  .mobile-menu-closed {
+    transition: 0.4s ease;
+    transform: scaleY(0);
+    @apply absolute z-10 w-full origin-top;
+  }
+
+  .mobile-menu-open {
+    transition: 0.4s ease;
+    transform: scaleY(1);
+    @apply bg-main-color absolute z-10 mt-8 h-screen w-full origin-top space-y-6 py-3 text-xl font-bold;
   }
 }
