@@ -12,12 +12,19 @@
   --font-roboto: "Roboto", sans-serif;
   --font-parisienne: "Parisienne", cursive;
   --font-inter: "Inter", sans-serif;
-  --spacing-maxAppWidth: 1180px;
+  --spacing-maxAppWidth: 1080px;
   --spacing-headerBarBig: 80px;
   --spacing-headerBarSmall: 60px;
+  --spacing-heroDownBar: 100px;
 }
 
 @layer base {
+  :root {
+    --heroDownBar: 100px;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: var(--font-roboto);
     min-height: 100vh;
@@ -60,6 +67,6 @@
   .mobile-menu-open {
     transition: 0.4s ease;
     transform: scaleY(1);
-    @apply bg-main-color absolute z-10 mt-8 h-screen w-full origin-top space-y-6 py-3 text-xl font-bold;
+    @apply bg-main-color absolute top-16 left-0 z-10 h-screen w-full origin-top space-y-6 py-3 text-xl font-bold;
   }
 }

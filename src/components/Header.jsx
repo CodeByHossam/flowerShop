@@ -5,33 +5,31 @@ import {
   Home,
   ShoppingBag,
   Info,
-  MessageCircle,
+  HeartHandshake,
   Phone,
 } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mobileMenuClass, setMobileMenuClass] = useState("hidden");
 
   const navItems = [
-    { id: "home", label: "Home", icon: <Home size={18} /> },
-    { id: "shop", label: "Shop", icon: <ShoppingBag size={18} /> },
-    { id: "about", label: "About", icon: <Info size={18} /> },
+    { id: "header", label: "Home", icon: <Home size={18} /> },
+    { id: "products", label: "Products", icon: <ShoppingBag size={18} /> },
     {
-      id: "testimonials",
-      label: "Testimonials",
-      icon: <MessageCircle size={18} />,
+      id: "highlights",
+      label: "Why Choose Us",
+      icon: <HeartHandshake size={18} />,
     },
+    { id: "ourstory", label: "About", icon: <Info size={18} /> },
+
     { id: "contact", label: "Contact", icon: <Phone size={18} /> },
   ];
 
-  // Update mobile menu class when isOpen changes
-  useEffect(() => {
-    setMobileMenuClass(isOpen ? "mobile-menu-open " : "mobile-menu-closed ");
-  }, [isOpen]);
-
   return (
-    <header className="bg-main-color h-headerBarSmall sm:h-headerBarBig sticky top-0 z-50 w-screen px-2 py-3">
+    <header
+      id="header"
+      className={`${isOpen ? "bg-rose-950 text-white" : "bg-main-color"} h-headerBarSmall sm:h-headerBarBig sticky top-0 z-50 w-screen px-2 py-3 transition-all duration-300`}
+    >
       {/* header bar section contains logo and Desktop menu OR mobile menu button based on screen size*/}
       <section
         id="header-bar"
@@ -48,7 +46,7 @@ const Header = () => {
             <a
               key={id}
               href={`#${id}`}
-              className="flex items-center gap-1 hover:underline"
+              className="relative flex items-center gap-1 before:absolute before:bottom-[-5px] before:left-0 before:h-[3px] before:w-0 before:rounded before:bg-red-800 before:transition-all before:duration-300 before:ease-in-out hover:before:w-full"
             >
               {icon}
               <span>{label}</span>
@@ -67,7 +65,13 @@ const Header = () => {
       </section>
 
       {/* Mobile Menu appears when click the button */}
-      <nav className={mobileMenuClass}>
+      <nav
+        className={
+          isOpen
+            ? "bg-main-color absolute top-16 left-0 z-10 h-screen w-full origin-top scale-y-100 space-y-6 px-4 py-3 text-xl font-bold text-black transition-all duration-300 ease-in-out md:hidden"
+            : "absolute top-16 left-0 z-10 w-full origin-top scale-y-0 transition-all duration-300 ease-in-out"
+        }
+      >
         {navItems.map(({ id, label, icon }) => (
           <a
             key={id}
