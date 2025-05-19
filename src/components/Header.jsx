@@ -36,9 +36,12 @@ const Header = () => {
         className="md:max-w-maxAppWidth mx-auto flex items-center justify-between text-sm md:px-10"
       >
         {/* Logo section */}
-        <section id="logo" className="text-xl font-bold">
-          🌸 Flower Shop
+        <section id="logo" className="text-xl font-bold flex justify-center gap-0.5">
+          <span className="animate-spin">🌸 </span>
+           <span className="font-parisienne font-bold" >Gardenia</span> 
         </section>
+
+
 
         {/* Desktop Menu hidden on mobile */}
         <nav className="hidden items-center gap-6 md:flex">

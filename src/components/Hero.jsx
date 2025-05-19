@@ -11,7 +11,7 @@ function Hero() {
     >
       <div
         id="hero-up"
-        className="flex h-[calc(100vh-var(--heroDownBar))] flex-col-reverse items-center justify-center sm:mt-[-20%] sm:flex-row md:gap-8"
+        className="bg-main-color flex h-[calc(100vh-var(--heroDownBar))] flex-col-reverse items-center justify-center sm:mt-[-20%] sm:flex-row md:gap-2 lg:gap-10"
       >
         <div
           id="hero-content"
@@ -20,7 +20,7 @@ function Hero() {
           <h1 className="font-parisienne mt-4 text-xl font-bold text-red-800 sm:text-2xl md:text-3xl lg:text-4xl">
             Bloom With Elegance
           </h1>
-          <h2 className="font-inter sm:text-md mt-4 text-lg font-semibold text-gray-800 md:mt-10 md:px-1 md:text-2xl lg:px-18 lg:text-3xl">
+          <h2 className="font-inter sm:text-md mt-4 text-lg font-semibold text-gray-800 md:mt-6 md:px-1 md:text-2xl lg:px-10 lg:text-3xl">
             Handcrafted Floral Designs for Every Occasion
           </h2>
 
@@ -31,7 +31,7 @@ function Hero() {
           <button
             onClick={() => {
               const productsSection = document.getElementById("products");
-              productsSection ?.scrollIntoView({ behavior: "smooth" });
+              productsSection?.scrollIntoView({ behavior: "smooth" });
             }}
             className="font-inter bg-accentColor mt-6 cursor-pointer rounded-full px-6 py-3 text-white shadow-md transition hover:bg-rose-800 md:mt-10"
           >

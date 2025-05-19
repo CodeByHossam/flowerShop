@@ -12,7 +12,7 @@
   --font-roboto: "Roboto", sans-serif;
   --font-parisienne: "Parisienne", cursive;
   --font-inter: "Inter", sans-serif;
-  --spacing-maxAppWidth: 1080px;
+  --spacing-maxAppWidth: 1280px;
   --spacing-headerBarBig: 80px;
   --spacing-headerBarSmall: 60px;
   --spacing-heroDownBar: 100px;
@@ -31,6 +31,9 @@
     min-width: 100vw;
     color: black;
   }
+  h2 {
+    @apply text-3xl font-bold;
+  }
 }
 
 @layer components {
@@ -38,6 +41,7 @@
     min-height: 100vh;
     min-width: 100vw;
     overflow: hidden;
+    @apply bg-main-color;
   }
 
   @keyframes slideDown {
@@ -70,3 +74,21 @@
     @apply bg-main-color absolute top-16 left-0 z-10 h-screen w-full origin-top space-y-6 py-3 text-xl font-bold;
   }
 }
+
+/* 
+  Tailwind CSS Default Breakpoints (Mobile First)
+
+  sm   => 640px   // Small devices (phones landscape)
+  md   => 768px   // Medium devices (tablets)
+  lg   => 1024px  // Large devices (laptops)
+  xl   => 1280px  // Extra large devices (desktops)
+  2xl  => 1536px  // Very large desktops (big monitors)
+
+  Usage Example:
+  .text-base          // default (mobile)
+  sm:text-lg          // ≥ 640px
+  md:text-xl          // ≥ 768px
+  lg:text-2xl         // ≥ 1024px
+  xl:text-3xl         // ≥ 1280px
+  2xl:text-4xl        // ≥ 1536px
+*/
