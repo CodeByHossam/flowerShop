@@ -13,7 +13,7 @@ const Separator = () => (
 
 const Main = () => {
   return (
-    <main className="sm:max-w-maxAppWidth mx-auto min-h-[calc(100vh-headerBarSmall)] w-screen px-2 sm:min-h-[calc(100vh-headerBarBig)] sm:px-10">
+    <main id="main" className="sm:max-w-maxAppWidth mx-auto min-h-[calc(100vh-headerBarSmall)] w-screen px-2 sm:min-h-[calc(100vh-headerBarBig)] sm:px-10">
       <Hero />
       <Products />
       <Separator />

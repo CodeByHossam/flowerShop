@@ -9,42 +9,42 @@ import pho6 from "../assets/products/product (6).png";
 
 const products = [
   {
-    id: 1,
+    id: "product-1",
     title: "Rose Bouquet",
     price: "$39",
     image: pho1,
     type: "Bouquet",
   },
   {
-    id: 2,
+    id: "product-2",
     title: "Spring Vase",
     price: "$45",
     image: pho2,
     type: "Vase",
   },
   {
-    id: 3,
+    id: "product-3",
     title: "Orchid Mix",
     price: "$55",
     image: pho3,
     type: "Bouquet",
   },
   {
-    id: 4,
+    id: "product-4",
     title: "Pastel Harmony",
     price: "$49",
     image: pho4,
     type: "Vase",
   },
   {
-    id: 5,
+    id: "product-5",
     title: "Paradise Garden",
     price: "$43",
     image: pho5,
     type: "Vase",
   },
   {
-    id: 6,
+    id: "product-6",
     title: "Sky Heaven",
     price: "$41",
     image: pho6,
@@ -66,6 +66,7 @@ const Products = () => {
         {products.map((product) => (
           <ProductCard
             key={product.id}
+            id={product.id}
             title={product.title}
             image={product.image}
             price={product.price}
