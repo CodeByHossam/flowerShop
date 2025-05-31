@@ -2,8 +2,8 @@ import React from "react";
 
 const ContactCTA = () => {
   return (
-    <section id="contact" className="bg-rose-50 py-10 text-black sm:py-16">
-      <div className="max-w-myapp mx-auto px-4 sm:px-10">
+    <section id="contact" className="w-full max-w-maxAppWidth scroll-m-15 md:scroll-m-20 bg-rose-50 py-10 text-black sm:py-16">
+      <div className=" mx-auto px-4 sm:px-10">
         {/* Heading */}
         <div className="mb-10 text-center">
           <h2 className="font-parisienne text-3xl sm:text-4xl">

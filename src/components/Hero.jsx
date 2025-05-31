@@ -5,9 +5,7 @@ function Hero() {
   return (
     <section
       id="hero"
-      className={
-        "flex min-h-[calc(100vh-var(--heroDownBar))] w-full flex-col items-center justify-center text-center"
-      }
+      className="max-w-maxAppWidth flex min-h-[calc(100vh-var(--heroDownBar))] w-full scroll-m-15 flex-col items-center justify-center text-center md:scroll-m-20"
     >
       <div
         id="hero-up"
@@ -54,7 +52,7 @@ function Hero() {
         id="hero-down "
         className="absolute bottom-0 left-0 hidden min-h-[--heroDownBar] w-full bg-rose-950 text-white shadow-inner sm:block"
       >
-        {/* Inner container with padding and max width */}
+        {/* transition section */}
         <div className="max-w-maxAppWidth mx-auto px-4 py-6">
           <div className="flex flex-wrap justify-around gap-6 text-center">
             <div className="flex flex-col items-center">

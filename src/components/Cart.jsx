@@ -1,52 +1,18 @@
 import { X, ArrowLeft, Trash2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 const Cart = ({ isOpen, onClose }) => {
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    setCartItems(storedItems);
-  }, [isOpen]); // Reload cart items when cart is opened
-
-  const updateCartItems = (newItems) => {
-    setCartItems(newItems);
-    localStorage.setItem("cartItems", JSON.stringify(newItems));
-  };
-
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace("$", "")) || 0;
-      const quantity = parseInt(item.quantity) || 1;
-      return total + price * quantity;
-    }, 0);
-  };
+  const { cartItems, removeFromCart, updateQuantity, clearCart, getCartTotal } =
+    useCart();
 
   const formatPrice = (price) => {
     const parsedPrice = parseFloat(price.replace("$", ""));
     return isNaN(parsedPrice) ? "0.00" : parsedPrice.toFixed(2);
   };
 
-  const handleQuantityChange = (itemId, change) => {
-    const updatedItems = cartItems.map((item) => {
-      if (item.id === itemId) {
-        const currentQuantity = parseInt(item.quantity) || 1;
-        const newQuantity = Math.max(1, currentQuantity + change);
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    });
-    updateCartItems(updatedItems);
-  };
-
   const handleClearCart = () => {
-    setCartItems([]);
-    localStorage.removeItem("cartItems");
-  };
-
-  const handleRemoveItem = (itemId) => {
-    const updatedItems = cartItems.filter((item) => item.id !== itemId);
-    updateCartItems(updatedItems);
+    clearCart();
+    onClose(); // Close cart after clearing
   };
 
   return (
@@ -102,7 +68,7 @@ const Cart = ({ isOpen, onClose }) => {
                         </p>
                       </div>
                       <button
-                        onClick={() => handleRemoveItem(item.id)}
+                        onClick={() => removeFromCart(item.id)}
                         className="text-gray-400 transition-colors hover:text-red-600"
                         aria-label="Remove item"
                       >
@@ -111,7 +77,7 @@ const Cart = ({ isOpen, onClose }) => {
                     </div>
                     <div className="mt-1 flex items-center gap-2">
                       <button
-                        onClick={() => handleQuantityChange(item.id, -1)}
+                        onClick={() => updateQuantity(item.id, -1)}
                         className="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                       >
                         -
@@ -120,7 +86,7 @@ const Cart = ({ isOpen, onClose }) => {
                         {item.quantity || 1}
                       </span>
                       <button
-                        onClick={() => handleQuantityChange(item.id, 1)}
+                        onClick={() => updateQuantity(item.id, 1)}
                         className="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                       >
                         +
@@ -137,7 +103,7 @@ const Cart = ({ isOpen, onClose }) => {
         <div className="border-t pt-4">
           <div className="mb-4 flex justify-between">
             <span className="font-medium">Total:</span>
-            <span className="font-bold">${calculateTotal().toFixed(2)}</span>
+            <span className="font-bold">${getCartTotal().toFixed(2)}</span>
           </div>
           <div className="space-y-2">
             <button

@@ -5,7 +5,7 @@ const OurStory = () => {
   return (
     <section
       id="ourstory"
-      className="bg-main-color flex min-h-screen flex-col-reverse items-center justify-center lg:flex-row"
+      className="max-w-maxAppWidth bg-main-color flex min-h-screen w-full scroll-m-7 flex-col-reverse items-center justify-center md:scroll-m-10 lg:flex-row"
     >
       {/* Image Section */}
       <div className="aspect-square w-full overflow-hidden md:w-70/100 lg:w-1/2">

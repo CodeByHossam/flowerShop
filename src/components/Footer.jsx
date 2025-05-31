@@ -3,13 +3,13 @@ import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="  text-white bg-rose-950 ">
+    <footer className="bg-rose-950 text-white">
       {/* Inner Content Container */}
-      <div className=" mx-auto md:max-w-maxAppWidth px-4 py-12 sm:px-10">
+      <div className="md:max-w-maxAppWidth mx-auto px-4 py-12 sm:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Info */}
-           <div >
-            <h3 className="font-parisienne text-2xl text-subColor mb-3">
+          <div>
+            <h3 className="font-parisienne text-subColor mb-3 text-2xl">
               Flower Shop
             </h3>
             <p className="font-inter text-sm text-gray-300">
@@ -23,18 +23,26 @@ const Footer = () => {
             <h4 className="font-inter mb-4 text-lg font-semibold">
               Quick Links
             </h4>
-            <ul className="space-y-2 font-inter text-sm">
+            <ul className="font-inter space-y-2 text-sm">
               <li>
-                <a href="#hero" className="hover:underline">Home</a>
+                <a href="#hero" className="hover:underline">
+                  Home
+                </a>
               </li>
               <li>
-                <a href="#products" className="hover:underline">Shop</a>
+                <a href="#products" className="hover:underline">
+                  Shop
+                </a>
               </li>
               <li>
-                <a href="#ourstory" className="hover:underline">About</a>
+                <a href="#ourstory" className="hover:underline">
+                  About
+                </a>
               </li>
               <li>
-                <a href="#contact" className="hover:underline">Contact</a>
+                <a href="#contact" className="hover:underline">
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
@@ -42,7 +50,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="font-inter mb-4 text-lg font-semibold">Contact</h4>
-            <ul className="space-y-2 font-inter text-sm text-gray-300">
+            <ul className="font-inter space-y-2 text-sm text-gray-300">
               <li className="flex items-center gap-2">
                 <Phone size={16} /> +971 123 456 789
               </li>
@@ -56,8 +64,12 @@ const Footer = () => {
           <div>
             <h4 className="font-inter mb-4 text-lg font-semibold">Follow Us</h4>
             <div className="flex gap-4 text-gray-300">
-              <a href="#"><Facebook size={20} className="hover:text-white" /></a>
-              <a href="#"><Instagram size={20} className="hover:text-white" /></a>
+              <a href="#">
+                <Facebook size={20} className="hover:text-white" />
+              </a>
+              <a href="#">
+                <Instagram size={20} className="hover:text-white" />
+              </a>
             </div>
           </div>
         </div>

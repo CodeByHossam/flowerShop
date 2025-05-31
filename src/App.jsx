@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div id="app" className="bg-main-color max-w-[maxAppWidth] border-2">
+    <div id="app" className="bg-main-color w-full">
       <Header />
       <Main />
       <Footer />

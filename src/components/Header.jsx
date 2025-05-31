@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Menu,
   X,
@@ -10,30 +10,16 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import Cart from "./Cart";
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-
-  useEffect(() => {
-    // Load initial cart count
-    const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    setCartItemsCount(storedItems.length);
-
-    // Listen for storage changes
-    const handleStorageChange = () => {
-      const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-      setCartItemsCount(items.length);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  const { getCartCount } = useCart();
 
   const navItems = [
     {
-      id: "main",
+      id: "hero",
       label: "Home",
       icon: <Home size={18} />,
       className: "text-black",
@@ -103,9 +89,9 @@ const Header = () => {
               className="relative flex items-center gap-1 text-sm font-bold text-red-600"
             >
               <ShoppingCart size={18} />
-              {cartItemsCount > 0 && (
+              {getCartCount() > 0 && (
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-xs text-white">
-                  {cartItemsCount}
+                  {getCartCount()}
                 </span>
               )}
             </button>
@@ -148,9 +134,9 @@ const Header = () => {
             className="flex items-center gap-2 font-bold text-red-600"
           >
             <ShoppingCart size={18} />
-            {cartItemsCount > 0 && (
+            {getCartCount() > 0 && (
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-xs text-white">
-                {cartItemsCount}
+                {getCartCount()}
               </span>
             )}
           </button>

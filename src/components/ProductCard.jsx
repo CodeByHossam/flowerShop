@@ -1,17 +1,11 @@
 import React from "react";
+import { useCart } from "../context/CartContext";
 
 const ProductCard = ({ id, title, image, price, type }) => {
+  const { addToCart } = useCart();
+
   const handleAddToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const existingItem = cartItems.find((item) => item.id === id);
-
-    if (existingItem) {
-      existingItem.quantity = (existingItem.quantity || 0) + 1;
-    } else {
-      cartItems.push({ id, title, image, price, type, quantity: 1 });
-    }
-
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    addToCart({ id, title, image, price, type });
   };
 
   return (

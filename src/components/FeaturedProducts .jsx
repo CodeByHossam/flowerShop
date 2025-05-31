@@ -17,7 +17,10 @@ const products = [
 
 const FeaturedProducts = () => {
   return (
-    <section id="featured" className="max-w-myapp mx-auto my-16 px-4 sm:px-10">
+    <section
+      id="featured"
+      className="bg-main-color max-w-maxAppWidth mx-auto my-16 px-4 sm:px-10"
+    >
       <h2 className="font-parisienne text-subColor text-center text-2xl sm:text-3xl">
         Featured Bouquets
       </h2>

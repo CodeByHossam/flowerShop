@@ -56,7 +56,7 @@ const Products = () => {
   return (
     <section
       id="products"
-      className="bg-main-color max-w-myapp mx-auto my-16 px-4 pt-6 sm:px-10"
+      className="bg-main-color max-w-maxAppWidth mx-auto my-16 scroll-m-15 px-4 pt-6 sm:px-10 md:scroll-m-20"
     >
       <h2 className="font-parisienne text-subColor text-center text-2xl sm:text-3xl">
         Our Floral Collection

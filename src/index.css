@@ -24,11 +24,12 @@
   }
   html {
     scroll-behavior: smooth;
-  }
+    width: 100vw;
+   }
   body {
     font-family: var(--font-roboto);
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100vw;
     color: black;
   }
   h2 {
@@ -39,9 +40,10 @@
 @layer components {
   #root {
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100vw;
     @apply bg-main-color;
-  }
+    
+   }
 
   @keyframes slideDown {
     0% {
