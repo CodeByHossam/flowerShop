@@ -26,14 +26,14 @@ const Cart = ({ isOpen, onClose }) => {
         <div className="flex items-center justify-between border-b pb-4">
           <button
             onClick={onClose}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
+            className="flex cursor-pointer items-center gap-2 text-gray-600 hover:text-gray-900"
           >
             <ArrowLeft size={20} />
             <span>Back to Shop</span>
           </button>
           <button
             onClick={onClose}
-            className="text-gray-600 hover:text-gray-900"
+            className="cursor-pointer text-gray-600 hover:text-gray-900"
           >
             <X size={24} />
           </button>
@@ -69,7 +69,7 @@ const Cart = ({ isOpen, onClose }) => {
                       </div>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-gray-400 transition-colors hover:text-red-600"
+                        className="cursor-pointer text-gray-400 transition-colors hover:text-red-600"
                         aria-label="Remove item"
                       >
                         <Trash2 size={18} />
@@ -78,7 +78,7 @@ const Cart = ({ isOpen, onClose }) => {
                     <div className="mt-1 flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(item.id, -1)}
-                        className="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        className="cursor-pointer rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                       >
                         -
                       </button>
@@ -87,7 +87,7 @@ const Cart = ({ isOpen, onClose }) => {
                       </span>
                       <button
                         onClick={() => updateQuantity(item.id, 1)}
-                        className="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        className="cursor-pointer rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                       >
                         +
                       </button>
@@ -107,7 +107,7 @@ const Cart = ({ isOpen, onClose }) => {
           </div>
           <div className="space-y-2">
             <button
-              className="w-full rounded-lg bg-rose-600 py-2 text-white transition-colors hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full cursor-pointer rounded-lg bg-rose-600 py-2 text-white transition-colors hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={cartItems.length === 0}
             >
               Checkout
@@ -115,7 +115,7 @@ const Cart = ({ isOpen, onClose }) => {
             {cartItems.length > 0 && (
               <button
                 onClick={handleClearCart}
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-600 py-2 text-red-600 transition-colors hover:bg-red-50"
+                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-red-600 py-2 text-red-600 transition-colors hover:bg-red-50"
               >
                 <Trash2 size={18} />
                 Clear Cart

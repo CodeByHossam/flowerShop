@@ -1,65 +1,39 @@
 import { useState, useEffect } from "react";
 
 function useLocalStorage(key, initialValue) {
-  // Get from local storage then
-  // parse stored json or return initialValue
-  const readValue = () => {
-    // Prevent build error "window is undefined" but keep working
-    if (typeof window === "undefined") {
-      return initialValue;
-    }
-
+  const getValue = () => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.warn(`Error reading localStorage key "${key}":`, error);
+    } catch (e) {
+      console.warn(`useLocalStorage: Error reading "${key}"`, e);
       return initialValue;
     }
   };
 
-  // State to store our value
-  // Pass initial state function to useState so logic is only executed once
-  const [storedValue, setStoredValue] = useState(readValue);
+  const [value, setValue] = useState(getValue);
 
-  // Return a wrapped version of useState's setter function that ...
-  // ... persists the new value to localStorage.
-  const setValue = (value) => {
+  const updateValue = (newValue) => {
     try {
-      // Allow value to be a function so we have the same API as useState
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-
-      // Save state
-      setStoredValue(valueToStore);
-
-      // Save to local storage
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      }
-    } catch (error) {
-      console.warn(`Error setting localStorage key "${key}":`, error);
+      const val = newValue instanceof Function ? newValue(value) : newValue;
+      setValue(val);
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch (e) {
+      console.warn(`useLocalStorage: Error setting "${key}"`, e);
     }
   };
 
   useEffect(() => {
-    setStoredValue(readValue());
+    setValue(getValue());
   }, []);
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      setStoredValue(readValue());
-    };
-
-    // this only works for other documents, not the current one
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
+    const sync = () => setValue(getValue());
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
   }, []);
 
-  return [storedValue, setValue];
+  return [value, updateValue];
 }
 
 export default useLocalStorage;

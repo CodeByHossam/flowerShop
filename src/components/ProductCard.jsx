@@ -23,7 +23,7 @@ const ProductCard = ({ id, title, image, price, type }) => {
         <p className="font-inter text-subColor mt-1">{price}</p>
         <button
           onClick={handleAddToCart}
-          className="bg-accentColor mt-4 cursor-pointer rounded-full px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-rose-700 hover:shadow-md"
+          className="bg-accentColor mt-4 cursor-pointer rounded-full px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-rose-700 hover:shadow-md active:scale-95 active:bg-rose-800"
         >
           Add to Cart
         </button>

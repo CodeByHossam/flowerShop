@@ -72,6 +72,21 @@ const Header = () => {
             <span className="font-parisienne font-bold"> Gardenia</span>
           </section>
 
+          {/* Cart button for mobile - centered */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative flex cursor-pointer items-center gap-1 text-sm font-bold text-red-600"
+            >
+              <ShoppingCart size={18} />
+              {getCartCount() > 0 && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-xs text-white">
+                  {getCartCount()}
+                </span>
+              )}
+            </button>
+          </div>
+
           {/* Desktop Menu hidden on mobile */}
           <nav className="hidden items-center gap-6 md:flex">
             {navItems.map(({ id, label, icon, className }) => (
@@ -86,7 +101,7 @@ const Header = () => {
             ))}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-1 text-sm font-bold text-red-600"
+              className="relative flex cursor-pointer items-center gap-1 text-sm font-bold text-red-600"
             >
               <ShoppingCart size={18} />
               {getCartCount() > 0 && (
@@ -126,20 +141,6 @@ const Header = () => {
               <span>{label}</span>
             </a>
           ))}
-          <button
-            onClick={() => {
-              setIsCartOpen(true);
-              setIsOpen(false);
-            }}
-            className="flex items-center gap-2 font-bold text-red-600"
-          >
-            <ShoppingCart size={18} />
-            {getCartCount() > 0 && (
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-xs text-white">
-                {getCartCount()}
-              </span>
-            )}
-          </button>
         </nav>
       </header>
 

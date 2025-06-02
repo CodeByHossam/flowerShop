@@ -25,12 +25,13 @@
   html {
     scroll-behavior: smooth;
     width: 100vw;
-   }
+  }
   body {
     font-family: var(--font-roboto);
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     color: black;
+    overflow-x: hidden;
   }
   h2 {
     @apply text-3xl font-bold;
@@ -40,10 +41,9 @@
 @layer components {
   #root {
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     @apply bg-main-color;
-    
-   }
+  }
 
   @keyframes slideDown {
     0% {

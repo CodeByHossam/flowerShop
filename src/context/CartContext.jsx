@@ -1,37 +1,33 @@
-import React, { createContext, useContext } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
+  const [cartItems, setCartItems] = useLocalStorage("cart", []);
 
   const addToCart = (item) => {
-    const existingItem = cartItems.find((i) => i.id === item.id);
-
-    if (existingItem) {
-      // If item exists, increase quantity
-      setCartItems(
-        cartItems.map((i) =>
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((i) => i.id === item.id);
+      if (existingItem) {
+        return prevItems.map((i) =>
           i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i,
-        ),
-      );
-    } else {
-      // If item doesn't exist, add it with quantity 1
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
-    }
+        );
+      }
+      return [...prevItems, { ...item, quantity: 1 }];
+    });
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
   const updateQuantity = (itemId, change) => {
-    setCartItems(
-      cartItems.map((item) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) => {
         if (item.id === itemId) {
-          const newQuantity = Math.max(1, (item.quantity || 1) + change);
-          return { ...item, quantity: newQuantity };
+          const newQuantity = (item.quantity || 1) + change;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : item;
         }
         return item;
       }),
@@ -48,9 +44,8 @@ export function CartProvider({ children }) {
 
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace("$", "")) || 0;
-      const quantity = parseInt(item.quantity) || 1;
-      return total + price * quantity;
+      const price = parseFloat(item.price.replace("$", ""));
+      return total + price * (item.quantity || 1);
     }, 0);
   };
 
@@ -67,10 +62,11 @@ export function CartProvider({ children }) {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-export function useCart() {
+// Export the hook as a named export
+export const useCart = () => {
   const context = useContext(CartContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error("useCart must be used within a CartProvider");
   }
   return context;
-}
+};
