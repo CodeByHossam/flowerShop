@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Cart from "./components/Cart";
 import { CartProvider } from "./context/CartContext";
+import { useEffect } from "react";
 
 function App() {
   return (

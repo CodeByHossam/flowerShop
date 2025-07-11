@@ -1,10 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 import fproduct1 from "../assets/featuredProducts/feature1.png";
 import fproduct2 from "../assets/featuredProducts/feature2.png";
 import fproduct3 from "../assets/featuredProducts/feature3.png";
 import fproduct4 from "../assets/featuredProducts/feature4.png";
 import fproduct5 from "../assets/featuredProducts/feature5.png";
 import fproduct6 from "../assets/featuredProducts/feature6.png";
+import fproduct7 from "../assets/featuredProducts/feature7.png";
+import fproduct8 from "../assets/featuredProducts/feature8.png";
 
 const products = [
   { name: "Romantic Roses", price: "$39", image: fproduct1 },
@@ -13,10 +16,12 @@ const products = [
   { name: "Sunflower Charm", price: "$36", image: fproduct4 },
   { name: "Peony Passion", price: "$48", image: fproduct5 },
   { name: "Lavender Love", price: "$42", image: fproduct6 },
+  { name: "Golden Glow", price: "$47", image: fproduct7 },
+  { name: "Blossom Breeze", price: "$40", image: fproduct8 },
 ];
-
+ 
 const FeaturedProducts = () => {
-  return (
+   return (
     <section
       id="featured"
       className="bg-main-color max-w-maxAppWidth mx-auto my-16 px-4 sm:px-10"
@@ -24,13 +29,16 @@ const FeaturedProducts = () => {
       <h2 className="font-parisienne text-subColor text-center text-2xl sm:text-3xl">
         Featured Bouquets
       </h2>
-      <div className="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-        {products.map(({ name, price, image }) => (
+      <div className="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+        {products.map(({ name, price, image }, index) => (
           <div
+            data-aos="zoom-in-up"
+            data-aos-delay={index * 100}
             key={name}
             className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:shadow-xl"
           >
             <img
+              loading="lazy"
               src={image}
               alt={name}
               className="aspect-square w-full object-cover"

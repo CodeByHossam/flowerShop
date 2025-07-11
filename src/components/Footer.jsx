@@ -75,6 +75,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Line */}
+        <div className="mt-6 text-center text-sm text-gray-400">
+  Developed by <a
+    href="https://github.com/CodeByHossam"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-rose-300 hover:underline"
+  >
+    Hossam Fathi Nasr
+  </a>
+</div>
         <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
           © {new Date().getFullYear()} Flower Shop. All rights reserved.
         </div>

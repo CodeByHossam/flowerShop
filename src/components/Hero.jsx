@@ -1,16 +1,21 @@
 import React from "react";
 import myimage from "../assets/hero.png";
-
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import Butterfly from "./Butterfly";
+ 
 function Hero() {
   return (
     <section
       id="hero"
       className="max-w-maxAppWidth flex min-h-[calc(100vh-var(--heroDownBar))] w-full scroll-m-15 flex-col items-center justify-center text-center md:scroll-m-20"
     >
+      {/* hero up */}
       <div
         id="hero-up"
-        className="bg-main-color flex h-[calc(100vh-var(--heroDownBar))] flex-col-reverse items-center justify-center sm:mt-[-20%] sm:flex-row md:gap-2 lg:gap-10"
+        className="bg-main-color flex h-[calc(100vh-var(--heroDownBar))] flex-col-reverse items-center justify-center sm:mt-[-10%] sm:flex-row md:gap-2 lg:gap-10"
       >
+        {/* hero content */}
         <div
           id="hero-content"
           className="sm:w-1/2 md:flex md:flex-col md:items-center md:justify-center"
@@ -37,22 +42,36 @@ function Hero() {
           </button>
         </div>
 
+        {/* hero photo with butterfly */}
         <div
           id="hero-photo-wrapper"
-          className="mt-4 mb-4 h-52 overflow-hidden sm:mt-0 sm:h-1/2 lg:h-3/5"
+          className="relative mt-4 mb-4 h-52 overflow-hidden sm:mt-0 sm:h-1/2 lg:h-3/5"
         >
+          {/* Butterfly Canvas */}
+          <div className="pointer-events-none absolute inset-0 z-10 bg-transparent">
+            <Canvas camera={{ position: [0, 1.5, 6], fov: 50 }}>
+              <ambientLight intensity={10} />
+              <directionalLight position={[5, 5, 5]} />
+              <Suspense fallback={null}>
+                <Butterfly />
+              </Suspense>
+            </Canvas>
+          </div>
+
+          {/* Hero Image */}
           <img
             src={myimage}
-            alt="image"
-            className="mx-auto aspect-square h-full max-w-md object-cover"
+            alt="Floral arrangement"
+            className="relative z-10 mx-auto aspect-square h-full max-w-md object-cover"
           />
         </div>
       </div>
+
+      {/* bottom bar */}
       <div
-        id="hero-down "
+        id="hero-down"
         className="absolute bottom-0 left-0 hidden min-h-[--heroDownBar] w-full bg-rose-950 text-white shadow-inner sm:block"
       >
-        {/* transition section */}
         <div className="max-w-maxAppWidth mx-auto px-4 py-6">
           <div className="flex flex-wrap justify-around gap-6 text-center">
             <div className="flex flex-col items-center">

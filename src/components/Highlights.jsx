@@ -50,6 +50,10 @@ const Highlights = () => {
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {items.map(({ icon, title, text }) => (
             <div
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+              
               key={title}
               className="flex flex-col items-center rounded-xl bg-white p-6 shadow-lg transition hover:shadow-2xl"
             >
